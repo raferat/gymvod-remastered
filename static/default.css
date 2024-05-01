@@ -51,3 +51,7 @@ body {
         visibility: hidden;
     }    
 }
+
+a {
+    color: var(--mtp-accent);
+}

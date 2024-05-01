@@ -12,6 +12,22 @@
 <body>
     {{template "navbar-body" "Aktuální informace"}}
     
+    {{range .}}
+        <article class="current-info">
+            {{range .}}
+                {{if .StartTag -}}
+                    <{{.TagName}}
+                    {{range $key, $value := .Attrs}}
+                        {{- $key}}="{{$value}}"
+                    {{end -}}>
+                {{- else if .EndTag -}}
+                    </{{.TagName}}>
+                {{- else -}}
+                    {{.TextContent}}
+                {{end}}
+            {{end}}
+        </article>
+    {{end}}
 
     {{template "footer-body"}}
 </body>
