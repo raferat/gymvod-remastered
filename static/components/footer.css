@@ -1,0 +1,75 @@
+@import url("/static/catppuccin.css");
+
+div.footer {
+    position: sticky;
+    top: 100vh;
+    width: 100vw;
+    background-color: var(--mtp-crust);
+    border-top: 2px solid var(--mtp-accent);
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    z-index: -1;
+}
+
+div.footer h3 {
+    margin: 0;
+}
+
+div.footer p {
+    margin: 0;
+}
+
+div.footer a {
+    color: var(--mtp-accent);
+}
+
+div.footer-disclaimer {
+    max-width: 450px;
+    margin-left: 15px;
+}
+
+div.footer-cookies {
+    max-width: 450px;
+    margin-left: 15px;
+}
+
+div.footer-cookies p {
+    font-size: 8pt;
+}
+
+div.footer-disclaimer p {
+    font-size: 8pt;
+}
+
+@media screen and (max-width: 1468px) {
+    div.footer-info p {
+        font-size: 8pt;
+    }
+}
+
+@media screen and (max-width: 1320px) {
+    div.footer {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    div.footer-info {
+        margin-left: 0;
+        margin-bottom: 15px;
+        width: min(600px,calc(100vw - 30px));
+    }
+
+    div.footer-disclaimer {
+        max-width: 600px;
+        margin-left: 0;
+        margin-bottom: 15px;
+    }
+    
+    div.footer-cookies {
+        max-width: 600px;
+        margin-left: 0;
+    }
+    
+}
+ 

@@ -1,0 +1,186 @@
+{{define "navbar-head"}}
+<link rel="stylesheet" href="/static/components/navbar.css">
+{{end}}
+
+{{define "navbar-local-links"}}
+    <li><a href="/">Aktuálně</a></li>
+    <li><a href="#">O škole</a></li>
+    <li><a href="#">Studium</a></li>
+    <li><a href="#">Přijímačky</a></li>
+{{end}}
+
+{{define "navbar-external-links"}}
+    <li><a target="_blank" href="https://gateway.gymvod.cz:444/">Bakaláři</a></li>
+    <li><a target="_blank" href="https://gateway.gymvod.cz/webmail">Webmail</a></li>
+    <li><a target="_blank" href="https://jidelna.gymvod.cz/">Jídelna</a></li>
+    <li onclick="openSettings();"><a href="javascript:void">Nastavení</a></li>
+{{end}}
+
+{{define "navbar-body"}}
+<div class="navbar">
+    <div class="navbar-left">
+        <div class="navbar-logo">
+            {{template "logo.svg"}}
+        </div>
+        <div class="title">
+            <h1>{{.}}</h1>
+        </div>
+    </div>
+<!--Desktop-->
+        <nav class="desktop">
+            <ul class="navbar-row">{{template "navbar-local-links"}}</ul>
+        </nav>
+        <div class="navbar-external-links desktop">
+            <ul class="navbar-row">{{template "navbar-external-links"}}</ul>
+        </div>
+        <div class="navbar-change-theme desktop">
+            <div id="navbar-change-theme-icon" onclick="openSettings();" align="center">
+                {{template "settings.svg"}}
+            </div>
+        </div>
+<!-- End Desktop -->
+<!-- Tablet -->
+        <nav class="tablet">
+            <ul class="navbar-row">{{template "navbar-local-links"}}</ul>
+        </nav>
+        <div class="tablet">
+            <div class="navbar-dropdown-menu">
+                {{template "menu.svg"}}
+            </div>
+            <div class="navbar-menu-content">
+                <ul class="navbar-row">{{template "navbar-external-links"}}</ul>
+            </div>
+        </div>
+<!-- End Tablet -->
+<!-- Mobile -->
+        <div class="mobile">
+            <div class="navbar-dropdown-menu">
+                {{template "menu.svg"}}
+            </div>
+            <div class="navbar-menu-content">
+                <ul>
+                    {{template "navbar-local-links"}}
+                    {{template "navbar-external-links"}}
+                </ul>
+            </div>
+        </div>
+<!-- End Mobile -->
+    <div id="navbar-change-theme-content" onclick="openSettings();">
+        <div class="navbar-settings-center">
+            <div class="navbar-choose-flavor" style="margin-right: 50px;">
+                <h5>Vyberte barvu pozadí:</h5>
+                <ul>
+                    <li onclick="changeFlavor('latte');">Latté</li>
+                    <li onclick="changeFlavor('frappe');">Frappé</li>
+                    <li onclick="changeFlavor('macchiato');">Macchiato</li>
+                    <li onclick="changeFlavor('mocha');">Mocha</li>
+                </ul>
+            </div>
+            <div class="navbar-choose-accent">
+                <h5>Vyberte barvu zvýraznění:</h5>
+                <ul>
+                    <li style="background-color: var(--mtp-flamingo);" onclick="changeAccent('Flamingo');">Flamingo</li>
+                    <li style="background-color: var(--mtp-mauve);" onclick="changeAccent('Mauve');">Mauve</li>
+                    <li style="background-color: var(--mtp-red);" onclick="changeAccent('Red');">Red</li>
+                    <li style="background-color: var(--mtp-maroon);" onclick="changeAccent('Maroon');">Maroon</li>
+                    <li style="background-color: var(--mtp-peach);" onclick="changeAccent('Peach');">Peach</li>
+                    <li style="background-color: var(--mtp-teal);" onclick="changeAccent('Teal');">Teal</li>
+                    <li style="background-color: var(--mtp-sapphire);" onclick="changeAccent('Sapphire');">Sapphire</li>
+                    <li style="background-color: var(--mtp-blue);" onclick="changeAccent('Blue');">Blue</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script>
+document.querySelectorAll(".navbar-dropdown-menu").forEach((value, idx, a) => {
+    value.addEventListener("click", () => {
+        let isMobile = window.getComputedStyle(document.querySelector(".navbar .tablet")).visibility == "hidden";
+        let element;
+        if ( isMobile ) {
+            element = document.querySelector(".navbar .mobile .navbar-menu-content");
+        } else {
+            element = document.querySelector(".navbar .tablet .navbar-menu-content");
+        }
+        
+        let state = element.hasAttribute("navbar-menu-opened");
+
+        if ( state ) {
+            element.removeAttribute("navbar-menu-opened");
+        } else {
+            element.setAttribute("navbar-menu-opened", "");
+        }
+    });
+});
+
+function openSettings() {
+    let element = document.querySelector("div#navbar-change-theme-content");
+    let state = element.hasAttribute("menu-opened");
+
+    if ( state ) {
+        element.removeAttribute("menu-opened");
+    } else {
+        element.setAttribute("menu-opened", "");
+    }
+}
+
+function changeAccent(accent) {
+    if (!accent) {
+        return;
+    }
+    accent=accent.toLowerCase();
+    let r = document.querySelector(":root");
+    window.localStorage.setItem("accent", accent);
+    r.style.setProperty("--mtp-accent",`var(--ctp-${window.localStorage.getItem("flavor")}-${accent})`);
+}
+
+function changeFlavor(flavor) {
+    if (flavor != "latte" && flavor != "frappe" && flavor != "mocha" && flavor != "macchiato")
+        return;
+    const stylesToChange = {
+        "--mtp-rosewater": `var(--ctp-${flavor}-rosewater)`,
+        "--mtp-flamingo":  `var(--ctp-${flavor}-flamingo)`,
+        "--mtp-pink":      `var(--ctp-${flavor}-pink)`,
+        "--mtp-mauve":     `var(--ctp-${flavor}-mauve)`,
+        "--mtp-red":       `var(--ctp-${flavor}-red)`,
+        "--mtp-maroon":    `var(--ctp-${flavor}-maroon)`,
+        "--mtp-peach":     `var(--ctp-${flavor}-peach)`,
+        "--mtp-yellow":    `var(--ctp-${flavor}-yellow)`,
+        "--mtp-green":     `var(--ctp-${flavor}-green)`,
+        "--mtp-teal":      `var(--ctp-${flavor}-teal)`,
+        "--mtp-sky":       `var(--ctp-${flavor}-sky)`,
+        "--mtp-sapphire":  `var(--ctp-${flavor}-sapphire)`,
+        "--mtp-blue":      `var(--ctp-${flavor}-blue)`,
+        "--mtp-lavender":  `var(--ctp-${flavor}-lavender)`,
+        "--mtp-text":      `var(--ctp-${flavor}-text)`,
+        "--mtp-subtext1":  `var(--ctp-${flavor}-subtext1)`,
+        "--mtp-subtext0":  `var(--ctp-${flavor}-subtext0)`,
+        "--mtp-overlay2":  `var(--ctp-${flavor}-overlay2)`,
+        "--mtp-overlay1":  `var(--ctp-${flavor}-overlay1)`,
+        "--mtp-overlay0":  `var(--ctp-${flavor}-overlay0)`,
+        "--mtp-surface2":  `var(--ctp-${flavor}-surface2)`,
+        "--mtp-surface1":  `var(--ctp-${flavor}-surface1)`,
+        "--mtp-surface0":  `var(--ctp-${flavor}-surface0)`,
+        "--mtp-base":      `var(--ctp-${flavor}-base)`,
+        "--mtp-mantle":    `var(--ctp-${flavor}-mantle)`,
+        "--mtp-crust":     `var(--ctp-${flavor}-crust)`,
+    };
+    let r = document.querySelector(":root");
+    Object.keys(stylesToChange).forEach((k, i) => {
+        r.style.setProperty(k,stylesToChange[k]);
+    });
+
+    let cAccent = window.localStorage.getItem("accent");
+    if (!cAccent) {
+        cAccent = "teal";
+    }
+
+    r.style.setProperty("--mtp-accent",`var(--ctp-${flavor}-${cAccent})`);
+    window.localStorage.setItem("flavor", flavor);
+}
+
+changeFlavor(window.localStorage.getItem("flavor"));
+changeAccent(window.localStorage.getItem("accent"));
+</script>
+{{end}}

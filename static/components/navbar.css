@@ -1,0 +1,199 @@
+@import url("/static/catppuccin.css");
+
+div.navbar {
+    position: sticky;
+    top: 0;
+    width: 100vw;
+    background-color: var(--mtp-crust);
+    border-bottom: 2px solid var(--mtp-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+div.navbar ul.navbar-row {
+    margin: 0;
+    padding-left: 18px;
+    padding-right: 18px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+
+div.navbar h1 {
+    font-size: 20pt;
+    
+}
+
+div.navbar ul li {
+    padding: 24px;
+    transition: ease-in-out 400ms;
+}
+
+div.navbar ul li:hover {
+    background-color: var(--mtp-surface1);
+}
+
+div.navbar ul li a {
+    text-decoration: none;
+    font-size: 16.8pt;
+    color: var(--mtp-accent)
+}
+
+div.navbar ul li:hover a {
+    text-decoration: underline;
+}
+
+div.navbar .navbar-logo svg {
+    padding: 6px;
+    height: 100%;
+    fill: var(--mtp-text);
+    filter: blur(0.1px);
+}
+
+div.navbar .navbar-logo {
+    margin-right: 100px;
+}
+
+div.navbar div.navbar-left {
+    display: flex;
+}
+
+div.navbar div.navbar-external-links {
+    margin-right: 5px;
+}
+
+div.navbar div.navbar-dropdown-menu svg {
+    margin-top: 5px;
+    margin-right: 5px;
+    fill: var(--mtp-accent);
+}
+
+/*div.navbar div.navbar-menu-content[navbar-menu-opened] {
+    background-color: blue;
+}*/
+
+div.navbar .mobile div.navbar-menu-content {
+    top: 75px;
+}
+
+div.navbar .mobile div.navbar-menu-content ul li:last-child {
+    border-top: 2px solid var(--mtp-accent);
+}
+
+div.navbar .mobile div.navbar-menu-content ul li:nth-child(5) {
+    border-top: 2px solid var(--mtp-accent);
+}
+
+div.navbar .mobile div.navbar-menu-content ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+}
+
+div.navbar .mobile div.navbar-menu-content ul li:last-child {
+    border-bottom-left-radius: 20px;
+}
+
+div.navbar .tablet div.navbar-menu-content {
+    top: 82px;
+}
+
+div.navbar div.navbar-menu-content {
+    position: absolute;
+    right:0;
+    background-color: var(--mtp-mantle);
+    border-bottom: 2px solid var(--mtp-accent);
+    border-left: 2px solid var(--mtp-accent);
+    border-bottom-left-radius: 20px;
+    display: flex;
+    justify-content: right;
+}
+
+div.navbar div.navbar-menu-content:not([navbar-menu-opened]) {
+    display: none;
+}
+
+div#navbar-change-theme-content {
+    position: fixed;
+    top:0px;
+    left:0px;
+    width: 100vw;
+    height: 100vh;
+    backdrop-filter: blur(1px);
+}
+
+div.navbar-settings-center {
+    position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: var(--mtp-mantle);
+    border: 2px solid var(--mtp-accent);
+    border-radius: 20px;
+    display: flex;
+    justify-content: right;
+    z-index: 65;
+    padding: 15px;
+}
+
+div#navbar-change-theme-content ul {
+    list-style-type: none;
+    padding: 0px;
+    margin: 0;
+}
+
+div#navbar-change-theme-content ul li {
+    padding: 24px;
+    transition: ease-in-out 400ms;
+    height: 50px;
+    margin-top: 15px;
+    text-align: right;
+    border-radius: 20px;
+    width: 250px;
+}
+
+
+div.navbar-choose-accent ul li {
+    color: var(--mtp-base);
+    border: 2px solid var(--mtp-text);
+}
+
+
+div.navbar-choose-flavor ul li:nth-child(1) {
+    border: 2px solid var(--ctp-latte-text);
+    background-color: var(--ctp-latte-base);
+    color: var(--ctp-latte-text);
+}
+
+div.navbar-choose-flavor ul li:nth-child(2) {
+    border: 2px solid var(--ctp-frappe-text);
+    background-color: var(--ctp-frappe-base);
+    color: var(--ctp-frappe-text);
+}
+
+div.navbar-choose-flavor ul li:nth-child(3) {
+    border: 2px solid var(--ctp-macchiato-text);
+    background-color: var(--ctp-macchiato-base);
+    color: var(--ctp-macchiato-text);
+}
+
+div.navbar-choose-flavor ul li:nth-child(4) {
+    border: 2px solid var(--ctp-mocha-text);
+    background-color: var(--ctp-mocha-base);
+    color: var(--ctp-mocha-text);
+}
+
+div#navbar-change-theme-content ul li:hover {
+    background-color: var(--mtp-surface1);
+}
+
+div#navbar-change-theme-content:not([menu-opened]) {
+    display: none;
+}
+
+div#navbar-change-theme-icon svg {
+    fill: var(--mtp-accent);
+}
