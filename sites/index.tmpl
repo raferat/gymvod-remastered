@@ -5,13 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Gymvod - Aktuální informace</title>
     <link rel="stylesheet" href="/static/default.css">
+    <link rel="stylesheet" href="/static/sites/index.css">
     <link rel="shortcut icon" href="/static/logo.svg" type="image/x-icon">
     {{template "navbar-head"}}
     {{template "footer-head"}}
 </head>
 <body>
     {{template "navbar-body" "Aktuální informace"}}
-    
+    <main class="information-grid">
+    <div>
     {{range .}}
         <article class="current-info">
             {{range .}}
@@ -28,7 +30,8 @@
             {{end}}
         </article>
     {{end}}
-
+    </div>
+    </main>
     {{template "footer-body"}}
 </body>
 </html>

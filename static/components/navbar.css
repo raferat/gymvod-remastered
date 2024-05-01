@@ -4,6 +4,7 @@ div.navbar {
     position: sticky;
     top: 0;
     width: 100vw;
+    height: 85px;
     background-color: var(--mtp-crust);
     border-bottom: 2px solid var(--mtp-accent);
     display: flex;
@@ -71,12 +72,8 @@ div.navbar div.navbar-dropdown-menu svg {
     fill: var(--mtp-accent);
 }
 
-/*div.navbar div.navbar-menu-content[navbar-menu-opened] {
-    background-color: blue;
-}*/
-
-div.navbar .mobile div.navbar-menu-content {
-    top: 75px;
+div.navbar div.navbar-menu-content {
+    top: 83px;
 }
 
 div.navbar .mobile div.navbar-menu-content ul li:last-child {
@@ -97,9 +94,6 @@ div.navbar .mobile div.navbar-menu-content ul li:last-child {
     border-bottom-left-radius: 20px;
 }
 
-div.navbar .tablet div.navbar-menu-content {
-    top: 82px;
-}
 
 div.navbar div.navbar-menu-content {
     position: absolute;
@@ -122,6 +116,10 @@ div#navbar-change-theme-content {
     left:0px;
     width: 100vw;
     height: 100vh;
+    background: linear-gradient(
+        rgba(0,0,0,0.5),
+        rgba(0,0,0,0.5)
+    );
     backdrop-filter: blur(1px);
 }
 
@@ -155,6 +153,11 @@ div#navbar-change-theme-content ul li {
     width: 250px;
 }
 
+@media screen and (max-width: 669px) {
+    div#navbar-change-theme-content ul li {
+        width: 150px;
+    }
+}
 
 div.navbar-choose-accent ul li {
     color: var(--mtp-base);

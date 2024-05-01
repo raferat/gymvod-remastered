@@ -116,6 +116,5 @@ func rootSite(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.WriteHeader(http.StatusOK)
 		err = tmpl.Execute(w, res)
-		log.Println(err)
 	}
 }
