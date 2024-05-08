@@ -1,3 +1,12 @@
+{{define "indexabout-school-tablet-desktop"}}
+<div class="about-school">
+    <img src="http://www.bexte.cz/picture/page/big/12072010169_2.jpg" alt="">
+    <!--<div class="frame">
+        
+    </div>-->
+</div>
+{{end}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +21,7 @@
 </head>
 <body>
     {{template "navbar-body" "Aktuální informace"}}
+<!--Current info-->
     <main class="information-grid">
     <div>
     {{range .}}
@@ -32,6 +42,18 @@
     {{end}}
     </div>
     </main>
+<!--End current info-->
+<!--About school-->
+    <div class="mobile">
+
+    </div>
+    <div class="tablet">
+        {{template "indexabout-school-tablet-desktop"}}
+    </div>
+    <div class="desktop">
+        {{template "indexabout-school-tablet-desktop"}}
+    </div>
+<!--End about school-->
     {{template "footer-body"}}
 </body>
 </html>

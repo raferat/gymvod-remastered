@@ -12,6 +12,11 @@ div.navbar {
     align-items: center;
 }
 
+div.navbar div.title {
+    width: 266px;
+    text-align: center;
+}
+
 div.navbar ul.navbar-row {
     margin: 0;
     padding-left: 18px;
@@ -55,15 +60,20 @@ div.navbar .navbar-logo svg {
 }
 
 div.navbar .navbar-logo {
-    margin-right: 100px;
+    margin-right: 5px;
 }
 
 div.navbar div.navbar-left {
     display: flex;
+    height: 100%;
 }
 
 div.navbar div.navbar-external-links {
     margin-right: 5px;
+}
+
+div.navbar div.navbar-external-links.desktop ul li:last-child {
+    margin-left: 30px;
 }
 
 div.navbar div.navbar-dropdown-menu svg {

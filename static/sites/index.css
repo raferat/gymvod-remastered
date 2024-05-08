@@ -4,6 +4,7 @@ article.current-info {
     border-radius: 20px;
     padding: 15px;
     margin-bottom: 20px;
+    background-color: var(--mtp-base);
 }
 
 article.current-info h3 {
@@ -50,4 +51,37 @@ main.information-grid {
     article.current-info div.gallery ul li {
         justify-content: center;
     }
+}
+
+div.about-school img {
+    position: fixed;
+    top: 0px;
+    z-index: -50;
+    width: 100%;
+    mask-image: linear-gradient(to left,
+        rgba(0,0,0,0),
+        rgba(0,0,0,1),
+        rgba(0,0,0,1)
+    );
+}
+
+div.about-school div.frame {
+    position: fixed;
+    top: 25vh;
+    left: 25vw;
+    transform: translate(-50%, -50%);
+    background-color: var(--mtp-crust);
+    padding: 25px;
+    border-radius: 20px;
+    border: 2px solid var(--mtp-accent);
+}
+
+
+div.about-school div.frame h1 {
+    margin: 0;
+    margin-bottom: 15px;
+}
+
+div.about-school div.frame div.contact {
+    text-align: right;
 }

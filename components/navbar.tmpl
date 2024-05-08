@@ -4,7 +4,7 @@
 
 {{define "navbar-local-links"}}
     <li><a href="/">Aktuálně</a></li>
-    <li><a href="#">O škole</a></li>
+    <li><a href="/about">O škole</a></li>
     <li><a href="#">Studium</a></li>
     <li><a href="#">Přijímačky</a></li>
 {{end}}
@@ -22,9 +22,15 @@
         <div class="navbar-logo">
             {{template "logo.svg"}}
         </div>
-        <div class="title">
+        <div class="title desktop">
             <h1>{{.}}</h1>
         </div>
+        <div class="title tablet">
+            <h1>{{.}}</h1>
+        </div>
+    </div>
+    <div class="title mobile">
+        <h1>{{.}}</h1>
     </div>
 <!--Desktop-->
         <nav class="desktop">
@@ -32,11 +38,6 @@
         </nav>
         <div class="navbar-external-links desktop">
             <ul class="navbar-row">{{template "navbar-external-links"}}</ul>
-        </div>
-        <div class="navbar-change-theme desktop">
-            <div id="navbar-change-theme-icon" onclick="openSettings();" align="center">
-                {{template "settings.svg"}}
-            </div>
         </div>
 <!-- End Desktop -->
 <!-- Tablet -->

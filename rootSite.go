@@ -7,6 +7,7 @@ import (
 	"text/template"
 
 	"github.com/PuerkitoBio/goquery"
+	"github.com/gin-gonic/gin"
 	"golang.org/x/net/html"
 )
 
@@ -34,6 +35,9 @@ func parseCurrentInformationHtmlContent(htmlContent string) []CurrentInformation
 			break
 		} else if next == html.StartTagToken || next == html.SelfClosingTagToken {
 			tname, hasAttrs := z.TagName()
+      if string(tname) == "script" {
+        log.Fatalln("Panic because of XSS: " + htmlContent)
+      }
 			if string(tname) == "hr" {
 				continue
 			}
@@ -116,5 +120,24 @@ func rootSite(w http.ResponseWriter, r *http.Request) {
 	} else {
 		w.WriteHeader(http.StatusOK)
 		err = tmpl.Execute(w, res)
+	}
+}
+
+func rootSiteGin(c *gin.Context) {
+	tmpl, err := template.ParseFiles("sites/index.tmpl", "components/navbar.tmpl", "components/footer.tmpl", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+
+	if err != nil {
+		log.Println(err)
+    c.String(http.StatusInternalServerError, "<h1>Error</h1>")
+    return
+	}
+
+	res, err := fetchCurrentInformation()
+	if err != nil {
+		c.Writer.WriteHeader(http.StatusInternalServerError)
+		c.String(http.StatusInternalServerError,"<h1>Internal server errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror</h1>")
+	} else {
+		c.Writer.WriteHeader(http.StatusOK)
+		err = tmpl.Execute(c.Writer, res)
 	}
 }

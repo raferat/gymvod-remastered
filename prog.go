@@ -1,9 +1,12 @@
 package main
 
 import (
+	"io"
+	"log"
 	"net/http"
-  "io"
-  "log"
+
+	"github.com/gin-gonic/gin"
+  "github.com/gin-contrib/gzip"
 )
 
 func makeRequest(url string, method string, body io.Reader) (resp *http.Response) {
@@ -26,8 +29,9 @@ func makeRequest(url string, method string, body io.Reader) (resp *http.Response
   return resp
 }
 
-func main() {
+/*func main() {
 	http.HandleFunc("/", rootSite)
+  http.HandleFunc("/about", aboutSchoolSite)
 
 	fs := http.FileServer(http.Dir("static/"))
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
@@ -37,5 +41,20 @@ func main() {
   http.HandleFunc("/nahled/{id}", staticObrazekRoute)
 
 	http.ListenAndServe("0.0.0.0:4040", nil)
-	//fetchCurrentInformation()
+}*/
+
+func main() {
+  r := gin.Default()
+  r.Use(gzip.Gzip(gzip.DefaultCompression))
+  r.Static("/static", "static/")
+  r.StaticFile("/robots.txt", "./robots.txt")
+  r.GET("/", rootSiteGin)
+  r.GET("/about", aboutSchoolSiteGin)
+  r.GET("/soubor/:id", staticSouborRouteGin)
+  r.GET("/obrazek/:id", staticObrazekRouteGin)
+  r.GET("/nahled/:id", staticNahledRouteGin)
+
+  if err := r.Run(":4040"); err != nil {
+    log.Fatal(err)
+  }
 }

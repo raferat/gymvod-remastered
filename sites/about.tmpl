@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymvod - O Škole</title>
+    <link rel="stylesheet" href="/static/default.css">
+    <link rel="stylesheet" href="/static/sites/about.css">
+    <link rel="shortcut icon" href="/static/logo.svg" type="image/x-icon">
+    <meta
+        name="description"
+        content="Popis školy a Kontaktní údaje gymnázia Voděradská.
+            Nacházíme se na adrese Voděradská 900/2, Praha 10 - Strašnice, 100 00.">
+    {{template "navbar-head"}}
+    {{template "footer-head"}}
+</head>
+<body>
+    {{template "navbar-body" "O Škole"}}
+    <main>
+        <div class="about-pane">
+            <h1 style="text-align: center;">Gymnázium Voděradská</h1>
+        </div>
+        <div class="about-pane">
+            <h2>Kontaktní údaje:</h2>
+            <table>
+                <tr>
+                    <td>Adresa:</td>
+                    <td colspan="2">Voděradská 900/2; Praha 10 - Strašnice; 100 00</td>
+                </tr>
+                <tr>
+                    <td>Telefony:</td>
+                    <td>274 817 655,</td>
+                    <td>274 027 011 / <a href="/ucitele">linka kabinetu</a></td>
+                </tr>
+                <tr>
+                    <td>Fax:</td>
+                    <td>274 815 054</td>
+                </tr>
+                <tr>
+                    <td>E-mail:</td>
+                    <td><a href="mailto:info@gymvod.cz">info@gymvod.cz</a></td>
+                </tr>
+                <tr>
+                    <td>Webové stránky:</td>
+                    <td><a href="http://gymvod.cz">gymvod.cz</a></td>
+                </tr>
+                <tr>
+                    <td>IČO:</td>
+                    <td>61385361</td>
+                </tr>
+                <tr>
+                    <td>IZO:</td>
+                    <td>000638200</td>
+                </tr>
+                <tr>
+                    <td>Číslo účtu školy:</td>
+                    <td>3673370237 / 0100</td>
+                </tr>
+                <tr>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+        <div class="about-pane map-wrapper">
+            <h2>Kde nás najdete: </h2>
+            <!--<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.90551253164!2d14.49644119930391!3d50.06933116304832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b93050e37bb61%3A0x1916939109705cba!2zR3ltbsOheml1bSwgUHJhaGEgMTAsIFZvZMSbcmFkc2vDoSAy!5e0!3m2!1sen!2scz!4v1715110269361!5m2!1sen!2scz" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
+            <!--<iframe class="map" style="border:none" src="https://frame.mapy.cz/s/fomadohuzo" frameborder="0"></iframe>-->
+            <iframe class="map" title="Mapa, kde se nacházíme" style="border:none" src="https://frame.mapy.cz/s/fomadohuzo" frameborder="0"></iframe>
+        </div>
+    </main>
+
+    {{template "footer-body"}}
+</body>
+</html>

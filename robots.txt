@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /obrazek/
+Disallow: /soubor/
+Disallow: /nahled/
