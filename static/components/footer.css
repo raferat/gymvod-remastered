@@ -1,26 +1,27 @@
 @import url("/static/catppuccin.css");
 
-div.footer {
-    position: sticky;
-    top: 100vh;
+footer {
+    /*position: absolute;
+    top: 100vh;*/
+    /*bottom: 0;*/
+    margin-top: auto;
     width: 100vw;
     background-color: var(--mtp-crust);
     border-top: 2px solid var(--mtp-accent);
     padding: 15px;
     display: flex;
     justify-content: space-between;
-    z-index: -1;
 }
 
-div.footer h3 {
+footer h3 {
     margin: 0;
 }
 
-div.footer p {
+footer p {
     margin: 0;
 }
 
-div.footer a {
+footer a {
     color: var(--mtp-accent);
 }
 
@@ -49,7 +50,7 @@ div.footer-disclaimer p {
 }
 
 @media screen and (max-width: 1320px) {
-    div.footer {
+    footer {
         flex-direction: column;
         align-items: center;
     }

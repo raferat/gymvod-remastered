@@ -14,6 +14,8 @@ body {
     border: 0px;
     min-height: 100vh;
     overflow-x: hidden;
+    display: flex;
+    flex-direction: column;
 }
 
 

@@ -14,7 +14,6 @@ article.current-info h3 {
 
 article.current-info div.author {
     text-align: right;
-    text-wrap: nowrap;
 }
 
 article.current-info ul {
