@@ -107,7 +107,7 @@ func fetchCurrentInformation() (result []CurrentInformation, err error) {
 }
 
 func rootSite(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("sites/index.tmpl", "components/navbar.tmpl", "components/footer.tmpl", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+	tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
 
 	if err != nil {
 		log.Println(err)
@@ -124,7 +124,7 @@ func rootSite(w http.ResponseWriter, r *http.Request) {
 }
 
 func rootSiteGin(c *gin.Context) {
-	tmpl, err := template.ParseFiles("sites/index.tmpl", "components/navbar.tmpl", "components/footer.tmpl", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+	tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
 
 	if err != nil {
 		log.Println(err)

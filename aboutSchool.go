@@ -11,7 +11,7 @@ import (
 
 
 func aboutSchoolSite(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("sites/about.tmpl", "components/navbar.tmpl", "components/footer.tmpl", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+	tmpl, err := template.ParseFiles("sites/about.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
 
 	if err != nil {
 		log.Println(err)
@@ -28,7 +28,7 @@ func aboutSchoolSite(w http.ResponseWriter, r *http.Request) {
 }
 
 func aboutSchoolSiteGin(c *gin.Context) {
-  tmpl, err := template.ParseFiles("sites/about.tmpl", "components/navbar.tmpl", "components/footer.tmpl", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+  tmpl, err := template.ParseFiles("sites/about.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
 
 	if err != nil {
 		log.Println(err)
