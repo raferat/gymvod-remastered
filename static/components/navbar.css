@@ -13,8 +13,12 @@ div.navbar {
 }
 
 div.navbar div.title {
-    width: 266px;
+    width: 375px;
     text-align: center;
+}
+
+div.navbar div.navbar-left div.title {
+    float: right;
 }
 
 div.navbar ul.navbar-row {
@@ -45,7 +49,8 @@ div.navbar ul li:hover {
 div.navbar ul li a {
     text-decoration: none;
     font-size: 16.8pt;
-    color: var(--mtp-accent)
+    color: var(--mtp-accent);
+    white-space: nowrap;
 }
 
 div.navbar ul li:hover a {
@@ -61,6 +66,7 @@ div.navbar .navbar-logo svg {
 
 div.navbar .navbar-logo {
     margin-right: 5px;
+    aspect-ratio: 1;
 }
 
 div.navbar div.navbar-left {
