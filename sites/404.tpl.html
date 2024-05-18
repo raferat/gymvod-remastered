@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gymvod - Nenalezeno</title>
+    <link rel="stylesheet" href="/static/default.css">
+    <link rel="shortcut icon" href="/static/logo.svg" type="image/x-icon">
+    <style>
+        main {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            margin-top: auto;
+
+            border-radius: 20px;
+            border: 2px solid var(--mtp-accent);
+            width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 30px;
+
+            box-shadow: 2px 2px 20px var(--ctp-mocha-base);
+            background-color: var(--mtp-crust);
+        }
+
+        h1.notFound {
+            margin: 0;
+        }
+
+        h1.c404 {
+            margin:0;
+            margin-left:auto;
+            margin-right:auto;
+            font-size: 82pt;
+            height: 0;
+        }
+    </style>
+    {{template "navbar-head"}}
+    {{template "footer-head"}}
+</head>
+<body>
+    {{template "navbar-body" "Nenalezeno"}}
+    <h1 class="c404">404</h1>
+    <main>
+        <h1 class="notFound">Moje stránka nemůže danou položku nalézt, zkuste ji hledat na doméně <a href="https://gymvod.cz">gymvod.cz</a>.</h1>
+    </main>
+    {{template "footer-body"}}
+</body>
+</html>

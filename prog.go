@@ -4,9 +4,10 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"text/template"
 
+	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
-  "github.com/gin-contrib/gzip"
 )
 
 func makeRequest(url string, method string, body io.Reader) (resp *http.Response) {
@@ -43,11 +44,25 @@ func makeRequest(url string, method string, body io.Reader) (resp *http.Response
 	http.ListenAndServe("0.0.0.0:4040", nil)
 }*/
 
+func notFound(c *gin.Context) {
+  tmpl, err := template.ParseFiles("sites/404.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+  if err != nil {
+    log.Println(err)
+    c.String(http.StatusInternalServerError, "<h1>Error</h1>")
+  }
+  c.Writer.WriteHeader(http.StatusNotFound)
+  err = tmpl.Execute(c.Writer, "")
+  if err != nil {
+    log.Println(err)
+  }
+}
+
 func main() {
   r := gin.Default()
   r.Use(gzip.Gzip(gzip.DefaultCompression))
   r.Static("/static", "static/")
   r.StaticFile("/robots.txt", "./robots.txt")
+  r.NoRoute(notFound)
   r.GET("/", rootSiteGin)
   r.GET("/about", aboutSchoolSiteGin)
   r.GET("/soubor/:id", staticSouborRouteGin)
