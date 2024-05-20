@@ -1,3 +1,5 @@
+{{define "about-site"}}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,6 +15,7 @@
             Nacházíme se na adrese Voděradská 900/2, Praha 10 - Strašnice, 100 00.">
     {{template "navbar-head"}}
     {{template "footer-head"}}
+    {{template "ucitele-head"}}
 </head>
 <body>
     {{template "navbar-body" "O Škole"}}
@@ -20,6 +23,10 @@
         <div class="about-pane">
             <h1 style="text-align: center;">Gymnázium Voděradská</h1>
         </div>
+        <!--<div class="about-pane">
+            <h2>Učitelé:</h2>
+            <a href="/ucitele">zde</a>
+        </div>-->
         <div class="about-pane contact">
             <h2>Kontaktní údaje:</h2>
             <table>
@@ -55,19 +62,16 @@
                     <td>Číslo účtu školy:</td>
                     <td><a href="https://gymvod.cz/kontakt/">Získejte zde</a></td>
                 </tr>
-                <tr>
-                    <td></td>
-                </tr>
             </table>
         </div>
         <div class="about-pane map-wrapper">
             <h2>Kde nás najdete: </h2>
-            <!--<iframe class="map" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2560.90551253164!2d14.49644119930391!3d50.06933116304832!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x470b93050e37bb61%3A0x1916939109705cba!2zR3ltbsOheml1bSwgUHJhaGEgMTAsIFZvZMSbcmFkc2vDoSAy!5e0!3m2!1sen!2scz!4v1715110269361!5m2!1sen!2scz" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>-->
-            <!--<iframe class="map" style="border:none" src="https://frame.mapy.cz/s/fomadohuzo" frameborder="0"></iframe>-->
             <iframe class="map" title="Mapa, kde se nacházíme" style="border:none" src="https://frame.mapy.cz/s/fomadohuzo" frameborder="0"></iframe>
         </div>
+        {{template "ucitele-body" dict "Data" .UciteleTable "Embed" true}}
     </main>
 
     {{template "footer-body"}}
 </body>
 </html>
+{{end}}

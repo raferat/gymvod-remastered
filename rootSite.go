@@ -106,6 +106,7 @@ func fetchCurrentInformation() (result []CurrentInformation, err error) {
 	return result, err
 }
 
+/*
 func rootSite(w http.ResponseWriter, r *http.Request) {
 	tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
 
@@ -122,6 +123,7 @@ func rootSite(w http.ResponseWriter, r *http.Request) {
 		err = tmpl.Execute(w, res)
 	}
 }
+*/
 
 func rootSiteGin(c *gin.Context) {
 	tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")

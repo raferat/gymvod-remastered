@@ -1,0 +1,28 @@
+div.ucitele-wrapper {
+    width: 100%;
+}
+
+div.ucitele-wrapper table {
+    width: 100%;
+    border-radius: 20px;
+    background-color: var(--mtp-crust);
+    border: 2px solid var(--mtp-accent);
+    box-shadow: 2px 2px 20px var(--ctp-mocha-base);
+
+    padding: 20px;
+    border-spacing: 0px;
+}
+
+div.ucitele-wrapper table th, div.ucitele-wrapper table td {
+    border-left: 2px solid var(--mtp-accent);
+    border-bottom: 2px solid var(--mtp-accent);
+    padding: 7px;
+}
+
+div.ucitele-wrapper table tr td:first-child, div.ucitele-wrapper table tr th:first-child {
+    border-left: none;
+}
+
+div.ucitele-wrapper table tr:last-child td {
+    border-bottom: none;
+}

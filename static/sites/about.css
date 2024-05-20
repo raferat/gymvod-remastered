@@ -24,11 +24,11 @@ iframe.map:focus {
     }
 }
 
-div.about-pane h2 {
+.about-pane h2 {
     margin-top: 0;
 }
 
-div.about-pane {
+.about-pane {
     width: 100%;
     margin-bottom: 50px;
     padding: 15px;

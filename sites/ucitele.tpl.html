@@ -1,0 +1,47 @@
+{{define "ucitele-site"}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+{{block "ucitele-head" .}}
+    <link rel="stylesheet" href="/static/sites/ucitele.css">
+{{end}}
+    {{template "default-head" "Gymvod - Učitelé"}}
+    {{template "navbar-head"}}
+    {{template "footer-head"}}
+</head>
+<body>
+    {{template "navbar-body" "Učitelé"}}
+    <center style="padding: 20px;">
+{{block "ucitele-body" dict "Data" . "Embed" false}}
+        <div class="ucitele-wrapper">
+            <table class="about-pane">
+                <tr>
+                    <td colspan="5" style="border:none;"><h2 style="margin-top: 0;">Kontaky na učitele</h2></td>
+                </tr>
+                <tr>
+                    <th>Jméno</th>
+                    <th>Funkce</th>
+                    <th>Aprobace</th>
+                    <th>Číslo kabinetu</th>
+                    <th>E-mail</th>
+                </tr>
+            {{range .Data}}
+                <tr>
+                    {{range $index, $element := .}}
+                        {{if lt $index 4}}
+                            <td>{{$element}}</td>
+                        {{else}}
+                            <td><a href="mailto:{{$element}}">{{$element}}</a></td>
+                        {{end}}
+                    {{end}}
+                </tr>
+            {{end}}
+            </table>
+        </div>
+{{end}}
+    </center>
+
+    {{template "footer-body"}}
+</body>
+</html>
+{{end}}

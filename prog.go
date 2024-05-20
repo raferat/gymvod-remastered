@@ -4,7 +4,9 @@ import (
 	"io"
 	"log"
 	"net/http"
+	"path/filepath"
 	"text/template"
+  "errors"
 
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
@@ -30,6 +32,52 @@ func makeRequest(url string, method string, body io.Reader) (resp *http.Response
   return resp
 }
 
+var TEMPLATES *template.Template
+
+func loadAllTemplates() {
+  files := make([]string, 0, 50)
+
+  matched, err := filepath.Glob("sites/*")
+  if err != nil {
+    log.Fatalf("%+v\n", err)
+  }
+  for _,v := range matched {
+    files = append(files, v)
+  }
+  matched, err = filepath.Glob("components/*")
+  if err != nil {
+    log.Fatalf("%+v\n", err)
+  }
+  for _,v := range matched {
+    files = append(files, v)
+  }
+
+  log.Printf("Loaded: %+v\n", files)
+
+  tmpl, err := template.New("").Funcs(template.FuncMap{
+    "dict": func(values ...interface{}) (map[string]interface{}, error) {
+      if len(values)%2 != 0 {
+        return nil, errors.New("invalid dict call")
+      }
+      dict := make(map[string]interface{}, len(values)/2)
+      for i := 0; i < len(values); i+=2 {
+        key, ok := values[i].(string)
+        if !ok {
+          return nil, errors.New("dict keys must be strings")
+        }
+        dict[key] = values[i+1]
+      }
+      return dict, nil
+    },
+  }).ParseFiles(files...)
+
+  if err != nil {
+    log.Fatalf("%+v\n", err)
+  }
+
+  TEMPLATES=tmpl;
+}
+
 /*func main() {
 	http.HandleFunc("/", rootSite)
   http.HandleFunc("/about", aboutSchoolSite)
@@ -45,25 +93,23 @@ func makeRequest(url string, method string, body io.Reader) (resp *http.Response
 }*/
 
 func notFound(c *gin.Context) {
-  tmpl, err := template.ParseFiles("sites/404.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
-  if err != nil {
-    log.Println(err)
-    c.String(http.StatusInternalServerError, "<h1>Error</h1>")
-  }
   c.Writer.WriteHeader(http.StatusNotFound)
-  err = tmpl.Execute(c.Writer, "")
+  err := TEMPLATES.ExecuteTemplate(c.Writer, "404-site" ,"")
   if err != nil {
     log.Println(err)
   }
 }
 
 func main() {
+  loadAllTemplates()
+
   r := gin.Default()
   r.Use(gzip.Gzip(gzip.DefaultCompression))
   r.Static("/static", "static/")
   r.StaticFile("/robots.txt", "./robots.txt")
   r.NoRoute(notFound)
   r.GET("/", rootSiteGin)
+  r.GET("/ucitele", uciteleSiteGin)
   r.GET("/about", aboutSchoolSiteGin)
   r.GET("/soubor/:id", staticSouborRouteGin)
   r.GET("/obrazek/:id", staticObrazekRouteGin)
