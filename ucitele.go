@@ -1,7 +1,6 @@
 package main
 
 import (
-	"html/template"
 	"log"
 	"net/http"
 
@@ -19,11 +18,7 @@ func getContacts() [][]string {
   table := make([][]string, 0, 20) 
 
   doc.Find("div.flexaret table tr").Each(func(i int, s *goquery.Selection) {
-    if s.Children().Length() != 5 {
-      return
-    }
-
-    if s.Children().First().Children().Text() == "Jméno" {
+    if s.Children().Length() != 5 || s.Children().First().Children().Text() == "Jméno"{
       return
     }
 
@@ -40,18 +35,10 @@ func getContacts() [][]string {
 }
 
 func uciteleSiteGin (c *gin.Context) {
-  tmpl, err := template.ParseFiles("sites/ucitele.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
-
-	if err != nil {
-		log.Println(err)
-    c.String(http.StatusInternalServerError, "<h1>Error</h1>")
-    return
-	}
-
   dataFrame := getContacts()
 
 	c.Writer.WriteHeader(http.StatusOK)
-	err = tmpl.Execute(c.Writer, dataFrame)
+  err := TEMPLATES.ExecuteTemplate(c.Writer, "ucitele-site", dataFrame)
 
   if err != nil {
     log.Println(err)

@@ -78,20 +78,6 @@ func loadAllTemplates() {
   TEMPLATES=tmpl;
 }
 
-/*func main() {
-	http.HandleFunc("/", rootSite)
-  http.HandleFunc("/about", aboutSchoolSite)
-
-	fs := http.FileServer(http.Dir("static/"))
-	http.Handle("/static/", http.StripPrefix("/static/", fs))
-
-	http.HandleFunc("/soubor/{id}", staticSouborRoute)
-  http.HandleFunc("/obrazek/{id}", staticObrazekRoute)
-  http.HandleFunc("/nahled/{id}", staticObrazekRoute)
-
-	http.ListenAndServe("0.0.0.0:4040", nil)
-}*/
-
 func notFound(c *gin.Context) {
   c.Writer.WriteHeader(http.StatusNotFound)
   err := TEMPLATES.ExecuteTemplate(c.Writer, "404-site" ,"")

@@ -4,7 +4,6 @@ import (
 	"log"
 	"net/http"
 	"strings"
-	"text/template"
 
 	"github.com/PuerkitoBio/goquery"
 	"github.com/gin-gonic/gin"
@@ -106,33 +105,14 @@ func fetchCurrentInformation() (result []CurrentInformation, err error) {
 	return result, err
 }
 
-/*
-func rootSite(w http.ResponseWriter, r *http.Request) {
-	tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
-
-	if err != nil {
-		log.Println(err)
-	}
-
-	res, err := fetchCurrentInformation()
-	if err != nil {
-		w.WriteHeader(http.StatusInternalServerError)
-		w.Write([]byte("<h1>Internal server errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror</h1>"))
-	} else {
-		w.WriteHeader(http.StatusOK)
-		err = tmpl.Execute(w, res)
-	}
-}
-*/
-
 func rootSiteGin(c *gin.Context) {
-	tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
+	// tmpl, err := template.ParseFiles("sites/index.tpl.html", "components/navbar.tpl.html", "components/footer.tpl.html", "components/logo.svg", "components/menu.svg", "components/settings.svg")
 
-	if err != nil {
-		log.Println(err)
-    c.String(http.StatusInternalServerError, "<h1>Error</h1>")
-    return
-	}
+	// if err != nil {
+	// 	log.Println(err)
+    // c.String(http.StatusInternalServerError, "<h1>Error</h1>")
+    // return
+	// }
 
 	res, err := fetchCurrentInformation()
 	if err != nil {
@@ -140,6 +120,6 @@ func rootSiteGin(c *gin.Context) {
 		c.String(http.StatusInternalServerError,"<h1>Internal server errrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrrror</h1>")
 	} else {
 		c.Writer.WriteHeader(http.StatusOK)
-		err = tmpl.Execute(c.Writer, res)
+		err = TEMPLATES.ExecuteTemplate(c.Writer, "index-site", res)
 	}
 }
