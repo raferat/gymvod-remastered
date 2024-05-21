@@ -1,12 +1,13 @@
 package main
 
 import (
+	"errors"
+	"html/template"
 	"io"
 	"log"
 	"net/http"
 	"path/filepath"
-	"text/template"
-  "errors"
+	"time"
 
 	"github.com/gin-contrib/gzip"
 	"github.com/gin-gonic/gin"
@@ -69,6 +70,11 @@ func loadAllTemplates() {
       }
       return dict, nil
     },
+    "unesc": func(value string) (interface{}) {
+      log.Println(value)
+      a := template.HTML(value)
+      return a
+    },
   }).ParseFiles(files...)
 
   if err != nil {
@@ -88,6 +94,26 @@ func notFound(c *gin.Context) {
 
 func main() {
   loadAllTemplates()
+
+
+  ticker := time.NewTicker(5*time.Second)
+  updateTemplatesDone := make(chan bool)
+
+  go func() {
+    for {
+      select {
+        case <-updateTemplatesDone:
+          return
+        case <-ticker.C:
+          loadAllTemplates()
+      }
+    }
+  }()
+
+  defer func () {
+    ticker.Stop()
+    updateTemplatesDone <- true
+  } ()
 
   r := gin.Default()
   r.Use(gzip.Gzip(gzip.DefaultCompression))

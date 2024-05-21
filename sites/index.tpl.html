@@ -29,12 +29,13 @@
         <article class="current-info">
             {{range .}}
                 {{if .StartTag -}}
-                    <{{.TagName}}
+                    {{$tag := .TagName | printf "<%s " }}
                     {{range $key, $value := .Attrs}}
-                        {{- $key}}="{{$value}}"
-                    {{end -}}>
+                        {{$tag = (printf "%s %s=\"%s\"" $tag $key $value)}}
+                    {{end -}}
+                    {{printf "%s>" $tag | unesc }}
                 {{- else if .EndTag -}}
-                    </{{.TagName}}>
+                    {{printf "</%v>" .TagName | unesc }}
                 {{- else -}}
                     {{.TextContent}}
                 {{end}}
