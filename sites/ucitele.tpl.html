@@ -8,6 +8,27 @@
     {{template "default-head" "Gymvod - Učitelé"}}
     {{template "navbar-head"}}
     {{template "footer-head"}}
+    <style>
+        tr.notembed.notembed2.notembed3 td {
+            border: none;
+        }
+
+        tr.notembed.notembed2.notembed3 td h4 {
+            margin:0;
+            text-align: right; 
+            margin-bottom: 40px;
+        }
+
+        tr.notembed.notembed2.notembed3 td input {
+            width: 100%; 
+            margin-bottom: 40px; 
+            height: 40px; 
+            border-radius: 20px; 
+            padding: 7px; 
+            border: 2px solid var(--mtp-accent); 
+            background-color: var(--mtp-base);
+        }
+    </style>
 </head>
 <body>
     {{template "navbar-body" "Učitelé"}}
@@ -18,6 +39,16 @@
                 <tr>
                     <td colspan="5" style="border:none;"><h2 style="margin-top: 0;">Kontaky na učitele</h2></td>
                 </tr>
+                {{if not .Embed}}
+                <tr class="notembed notembed2 notembed3">
+                    <td colspan="1">
+                        <h4>Vyhledávat:</h4>
+                    </td>
+                    <td colspan="3">
+                        <input type="text" placeholder="Hledaná položka" onkeyup="onSearchInputChange(this);"/>
+                    </td>
+                </tr>
+                {{end}}
                 <tr>
                     <th>Jméno</th>
                     <th>Funkce</th>
@@ -25,9 +56,9 @@
                     <th>Číslo kabinetu</th>
                     <th>E-mail</th>
                 </tr>
-            {{range .Data}}
-                <tr>
-                    {{range $index, $element := .}}
+            {{range $i, $e := .Data}}
+                <tr id="uciteletrid{{$i}}">
+                    {{range $index, $element := $e}}
                         {{if lt $index 4}}
                             <td>{{$element}}</td>
                         {{else}}
@@ -40,6 +71,36 @@
         </div>
 {{end}}
     </center>
+
+    <script>
+        function isSearched(text, row) {
+            for (elem of row) {
+                if (elem.toLocaleLowerCase().includes(text.toLocaleLowerCase()))
+                    return true;
+            }
+
+            return false;
+        }
+
+        function onSearchInputChange(input) {
+            let x = {{.}};
+            let value = input.value;
+            if (value.length == 0) {
+                x.forEach((element, idx) => {
+                    document.getElementById(`uciteletrid${idx}`).style.display="table-row";
+                });    
+                return;
+            }
+
+            x.forEach((element, idx) => {
+                if(isSearched(value, element)) {
+                    document.getElementById(`uciteletrid${idx}`).style.display="table-row";
+                } else {
+                    document.getElementById(`uciteletrid${idx}`).style.display="none";
+                }
+            });
+        }
+    </script>
 
     {{template "footer-body"}}
 </body>

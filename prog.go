@@ -96,7 +96,7 @@ func main() {
   loadAllTemplates()
 
 
-  ticker := time.NewTicker(5*time.Second)
+  ticker := time.NewTicker(time.Second)
   updateTemplatesDone := make(chan bool)
 
   go func() {
