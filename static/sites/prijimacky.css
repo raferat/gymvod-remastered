@@ -1,0 +1,18 @@
+main {
+    padding: 50px;
+    display: grid;
+    grid-template-columns: auto auto;
+    column-gap: 30px;
+    row-gap: 30px;
+}
+
+
+
+article {
+    /*width: 600px;*/
+    border: 2px solid var(--mtp-accent);
+    border-radius: 20px;
+    padding: 15px;
+    
+    background-color: var(--mtp-base);
+}

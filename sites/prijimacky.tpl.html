@@ -1,0 +1,31 @@
+{{block "prijimacky-site" .}}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {{template "default-head" "Gymvod - Přijímačky"}}
+    {{template "navbar-head"}}
+    {{template "footer-head"}}
+    <link rel="stylesheet" href="/static/sites/prijimacky.css">
+</head>
+<body>
+    {{template "navbar-body" "Přijímačky"}}
+
+    <main>
+        <article>
+            <h3>A</h3>
+        </article>
+        <article>
+            <h3>B</h3>
+        </article>
+        <article>
+            <h3>C</h3>
+        </article>
+        <article>
+            <h3>D</h3>
+        </article>
+    </main>
+
+    {{template "footer-body"}}
+</body>
+</html>
+{{end}}

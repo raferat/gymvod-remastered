@@ -123,6 +123,7 @@ func main() {
   r.GET("/", rootSiteGin)
   r.GET("/ucitele", uciteleSiteGin)
   r.GET("/about", aboutSchoolSiteGin)
+  r.GET("/prijimacky", prijimackySiteGin)
   r.GET("/soubor/:id", staticSouborRouteGin)
   r.GET("/obrazek/:id", staticObrazekRouteGin)
   r.GET("/nahled/:id", staticNahledRouteGin)
