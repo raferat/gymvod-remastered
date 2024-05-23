@@ -17,8 +17,11 @@
 <body>
     {{template "navbar-body" "O Škole"}}
     <main>
-        <div class="about-pane">
-            <h1 style="text-align: center;">Gymnázium Voděradská</h1>
+        <div class="about-pane" style="width: max-content; display: flex;">
+            <div class="gymvod-logo">
+                {{template "logo.svg"}}
+            </div>
+            <h1 style="text-align: center;">ymnázium Voděradská</h1>
         </div>
         <div class="about-pane contact">
             <h2>Kontaktní údaje:</h2>

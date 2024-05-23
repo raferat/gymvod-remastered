@@ -35,9 +35,16 @@ iframe.map:focus {
     border-radius: 20px;
     border: 2px solid var(--mtp-accent);
     background-color: var(--mtp-crust);
-    box-shadow: 4px 4px 15px var(--ctp-mocha-base);
+    box-shadow: 1px 1px 5px var(--ctp-frappe-base);
 }
 
 .contact table {
     border-spacing: 1em 1em;
+}
+
+.gymvod-logo svg {
+    padding: 6px;
+    height: 80px;
+    fill: var(--mtp-text);
+    filter: blur(0.1px);
 }

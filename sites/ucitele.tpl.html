@@ -35,7 +35,7 @@
     <center style="padding: 20px;">
 {{block "ucitele-body" dict "Data" . "Embed" false}}
         <div class="ucitele-wrapper">
-            <table class="about-pane">
+            <table class="about-pane ucitele-allinfo">
                 <tr>
                     <td colspan="5" style="border:none;"><h2 style="margin-top: 0;">Kontaky na učitele</h2></td>
                 </tr>
@@ -68,7 +68,30 @@
                 </tr>
             {{end}}
             </table>
+            <div class="about-pane ucitele-collapsible">
+                <h2 style="margin-top: 0;">Kontaky na učitele</h2>
+                {{range $i, $e := .Data}}
+                    <button onclick="switchDetails({{$i}});"><div class="ucitel-name">{{index $e 0}}</div></button>
+                    {{if not (eq (len (index $e 1)) 0)}}
+                        <div class="detail not-opened detailof{{$i}}"><div>Funkce:</div>     <div>{{index $e 1}}</div></div>
+                    {{end}}
+                    <div class="detail not-opened detailof{{$i}}"><div>Aprobace:</div>       <div>{{index $e 2}}</div></div>
+                    <div class="detail not-opened detailof{{$i}}"><div>Linka kabinetu:</div> <div>{{index $e 3}}</div></div>
+                    <div class="detail not-opened detailof{{$i}}"><div>E-mail:</div>         <div><a href="mailto:{{index $e 4}}">{{index $e 4}}</a></div></div>
+                {{end}}
+            </div>
         </div>
+        <script>
+            function switchDetails(idx) {
+                document.querySelectorAll(`.detailof${idx}`).forEach((element, i) => {
+                    if (element.classList.contains("not-opened")) {
+                        element.classList.remove("not-opened");
+                    } else {
+                        element.classList.add("not-opened");
+                    }
+                });
+            }
+        </script>
 {{end}}
     </center>
 

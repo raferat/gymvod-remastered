@@ -2,27 +2,89 @@ div.ucitele-wrapper {
     width: 100%;
 }
 
-div.ucitele-wrapper table {
+div.ucitele-wrapper table.ucitele-allinfo {
     width: 100%;
     border-radius: 20px;
     background-color: var(--mtp-crust);
     border: 2px solid var(--mtp-accent);
-    box-shadow: 2px 2px 20px var(--ctp-mocha-base);
+    box-shadow: 1px 1px 5px var(--ctp-frappe-base);
 
     padding: 20px;
     border-spacing: 0px;
 }
 
-div.ucitele-wrapper table th, div.ucitele-wrapper table td {
+div.ucitele-wrapper table.ucitele-allinfo th, div.ucitele-wrapper table.ucitele-allinfo td {
     border-left: 2px solid var(--mtp-accent);
     border-bottom: 2px solid var(--mtp-accent);
     padding: 7px;
 }
 
-div.ucitele-wrapper table tr td:first-child, div.ucitele-wrapper table tr th:first-child {
+div.ucitele-wrapper table.ucitele-allinfo tr td:first-child, div.ucitele-wrapper table.ucitele-allinfo tr th:first-child {
     border-left: none;
 }
 
-div.ucitele-wrapper table tr:last-child td {
+div.ucitele-wrapper table.ucitele-allinfo tr:last-child td {
     border-bottom: none;
+}
+
+
+
+@media screen and (max-width: 739px) {
+    table.ucitele-allinfo {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1069px) {
+
+    div.ucitele-wrapper table.ucitele-allinfo th, div.ucitele-wrapper table.ucitele-allinfo tr:not(:first-child) td {
+        padding: 2px;
+        border-width: 1px;
+        font-size: 9pt;
+    }
+}
+
+div.ucitele-collapsible {
+    display: grid;
+    grid-template-columns: auto;
+    row-gap: 10px;
+}
+
+@media screen and (min-width: 740px) {
+    div.ucitele-collapsible {
+        display: none;
+    }
+}
+
+div.ucitel-name {
+    font-size: 12.75pt;
+    padding: 10px;
+}
+
+div.ucitel-name::after {
+    content: '+';
+    float: right;
+}
+
+div.ucitel-name:not(:first-child):not(:nth-child(2)) {
+    border-top: 1px solid var(--mtp-accent);
+}
+
+div.detail {
+    padding-left: 40px;
+    padding-right: 40px;
+    display: flex;
+    justify-content: space-between;
+}
+
+div.detail.not-opened {
+    display:none;
+}
+
+.about-pane button {
+    color: var(--mtp-text); 
+    background-color: var(--mtp-base); 
+    border: 1px solid var(--mtp-accent); 
+    border-radius: 20px; 
+    text-align: left;
 }

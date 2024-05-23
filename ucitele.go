@@ -8,7 +8,13 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
+var contactsCache [][]string = nil
+
 func getContacts() [][]string {
+  if contactsCache != nil {
+    return contactsCache
+  }
+
   resp := makeRequest("https://gymvod.cz/ucitele", "GET", nil)
   doc, err := goquery.NewDocumentFromReader(resp.Body)
   if err != nil {
@@ -30,6 +36,8 @@ func getContacts() [][]string {
 
     table = append(table, record)
   })
+
+  contactsCache = table
 
   return table
 }
